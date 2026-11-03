@@ -1,8 +1,8 @@
 # Power Automate 업무 자동화 실습
 
-Cloud Flow 기반 DPA(1일차)와 Power Automate Desktop 기반 RPA(2일차)를 다루는 **2일 핸즈온 교안**입니다.
+Cloud Flow 기반 DPA(1일차)와 Power Automate Desktop 기반 RPA(2일차)를 다루는 **2일 핸즈온 교안**의 설명 버전입니다. `pa_lab` 의 랩에 개념 페이지(`docs/concept/`)를 더했습니다.
 
-배포: `https://jm-2ktech.github.io/pa_lab/`
+배포: `https://jm-2ktech.github.io/pa_lab_explained/`
 
 ## 무엇을 다루나
 
@@ -38,12 +38,12 @@ bundle install
 bundle exec jekyll serve --port 4002
 ```
 
-`http://localhost:4002/pa_lab/` 에서 확인할 수 있습니다.
+`http://localhost:4003/pa_lab_explained/` 에서 확인할 수 있습니다.
 
 ## 폴더 구조
 
 ```
-pa_lab/
+pa_lab_explained/
 ├── _config.yml                  Jekyll 설정
 ├── _sass/custom/custom.scss     커스텀 스타일 (cs_lab 에서 가져옴 · 독립 운영)
 ├── .github/workflows/pages.yml  GitHub Pages 배포

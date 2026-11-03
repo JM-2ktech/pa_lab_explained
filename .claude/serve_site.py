@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""_site 를 baseurl(/pa_lab) 아래에 띄운다 — 로컬 미리보기용.
+"""_site 를 baseurl(/pa_lab_explained) 아래에 띄운다 — 로컬 미리보기용.
 
 `python -m http.server --directory _site` 로 띄우면 사이트가 / 에 붙어,
-테마의 CSS·JS(/pa_lab/assets/...)가 전부 404가 나고 페이지가 스타일 없이 보인다(2026-10-02).
+테마의 CSS·JS(/pa_lab_explained/assets/...)가 전부 404가 나고 페이지가 스타일 없이 보인다(2026-10-02).
 GitHub Pages 와 같은 경로 구조를 만들려고 baseurl 접두사를 떼고 _site 에서 찾는다.
 
-    python .claude/serve_site.py [포트]     # 기본 4012 → http://localhost:4012/pa_lab/
+    python .claude/serve_site.py [포트]     # 기본 4013 → http://localhost:4013/pa_lab_explained/
 """
 import functools, http.server, io, os, re, sys
 
@@ -52,7 +52,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 4012
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else 4013
     handler = functools.partial(Handler, directory=SITE)
     print('http://localhost:%d%s/' % (port, base))
     http.server.ThreadingHTTPServer(('', port), handler).serve_forever()

@@ -16,12 +16,12 @@ concept:
      ⚠️ 샘플 미실행. 결과값은 함수 참조와 .NET 형식 문자열 문서의 규칙으로 계산했다.
      ⚠️ 문서 대조: convertTimeZone 문서와 함수 참조의 예에 `2018-01-01T80:00:00` 오타가 있어 쓰지 않았다. date-time-values 의 `hh` 예시 결과 `1:45:30 PM` 은 .NET 규칙(`01`)과 다르다. 표는 .NET 을 따랐다.
      ⚠️ Recurrence 동작은 Azure Logic Apps 문서가 출처다. Power Automate 의 run-scheduled-tasks 가 고급 옵션 문서로 이 문서를 잇는다.
-     ⚠️ 실측할 것: `addToTime(..., -1, 'Month')` 의 음수. 문서는 더할 수라고만 적는다. Lab 2 16번 실측으로 동작한다
+     ⚠️ 실측할 것: `addToTime(..., -2, 'Month')` 의 음수. 문서는 더할 수라고만 적는다. Lab 2 16번 실측으로 동작한다
      ⚠️ 실측할 것: 시간대가 없는 시각을 넣은 addToTime() 결과에 Z 가 붙지 않는가(표의 3단계), `ko-KR` 로캘의 `dddd` 결과와 한글 글자가 든 형식 문자열, 시간대 변환 작업의 칸 라벨(한국어판 문서 표기), 되풀이 구성 창의 이 시간에는 · 이 분에 라벨(Lab 1 저작 메모 표기) -->
 
 > **다루는 것**: 날짜 값의 모양, UTC와 한국 시각의 변환, 형식 문자열, 날짜 계산 함수, 예약 트리거의 시간대
 >
-> **쓰는 곳**: Lab 1 `formatDateTime(convertFromUtc(utcNow(), 'Korea Standard Time'), 'yyyy-MM-dd')` · 표준 시간대 · Lab 2 `formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-1,'Month'),'yyyy-MM')`
+> **쓰는 곳**: Lab 1 `formatDateTime(convertFromUtc(utcNow(), 'Korea Standard Time'), 'yyyy-MM-dd')` · 표준 시간대 · Lab 2 `formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-2,'Month'),'yyyy-MM')`
 
 ---
 
@@ -149,17 +149,17 @@ Power Automate는 기본으로 UTC를 씁니다.[^datetime] `utcNow()` 는 언�
 
 시간 단위 인수는 `Second` · `Minute` · `Hour` · `Day` · `Week` · `Month` · `Year` 입니다.[^functions]
 
-식을 안쪽부터 읽으면 값이 이렇게 바뀝니다. 실행 시각은 한국 시각 2026-10-06 10:00입니다.
+식을 안쪽부터 읽으면 값이 이렇게 바뀝니다. 실행 시각은 한국 시각 2026-11-06 10:00입니다.
 
 ```
-formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-1,'Month'),'yyyy-MM')
+formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-2,'Month'),'yyyy-MM')
 ```
 
 | 순서 | 식 | 값 |
 |---:|---|---|
-| 1 | `utcNow()` | `2026-10-06T01:00:00.0000000Z` |
-| 2 | `convertFromUtc(…, 'Korea Standard Time')` | `2026-10-06T10:00:00.0000000` |
-| 3 | `addToTime(…, -1, 'Month')` | `2026-09-06T10:00:00.0000000` |
+| 1 | `utcNow()` | `2026-11-06T01:00:00.0000000Z` |
+| 2 | `convertFromUtc(…, 'Korea Standard Time')` | `2026-11-06T10:00:00.0000000` |
+| 3 | `addToTime(…, -2, 'Month')` | `2026-09-06T10:00:00.0000000` |
 | 4 | `formatDateTime(…, 'yyyy-MM')` | `2026-09` |
 
 ---
@@ -265,10 +265,10 @@ formatDateTime(addToTime(convertFromUtc(utcNow(),'Korea Standard Time'),-1,'Mont
 
     **완료 기준**: 출력이 `2026-30-05` 다.
 
-9. 한 달 전의 연월을 내는 식으로 바꿔 되풀이합니다.
+9. 두 달 전의 연월을 내는 식으로 바꿔 되풀이합니다.
 
     ```
-    formatDateTime(addToTime('2026-10-06T10:00:00', -1, 'Month'), 'yyyy-MM')
+    formatDateTime(addToTime('2026-11-06T10:00:00', -2, 'Month'), 'yyyy-MM')
     ```
 
     **완료 기준**: 출력이 `2026-09` 다.
